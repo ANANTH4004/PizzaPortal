@@ -12,11 +12,9 @@ namespace PizzaPortal.Controllers
         public PizzaController()
         {
             pizzaDetails = new List<PizzaDetails>();
-            pizzaDetails.Add(new PizzaDetails() { Id = 1, Name = "Pizza1", Price = 100, Rating = 4.4 });
-            pizzaDetails.Add(new PizzaDetails() { Id = 2, Name = "Pizza2", Price = 200, Rating = 4.4 });
-            pizzaDetails.Add(new PizzaDetails() { Id = 3, Name = "Pizza3", Price = 300, Rating = 4.4 });
-            pizzaDetails.Add(new PizzaDetails() { Id = 4, Name = "Pizza4", Price = 400, Rating = 4.4 });
-            pizzaDetails.Add(new PizzaDetails() { Id = 5, Name = "Pizza5", Price = 500, Rating = 4.4 });
+           Info info = new Info();
+            info.InsertData();
+            pizzaDetails = info.pizzaDetails;
         }
         // GET: PizzaController1
         public ActionResult Index()
@@ -29,7 +27,7 @@ namespace PizzaPortal.Controllers
             TempData["id"] = id;
            var ans =  pizzaDetails.Find(x => x.Id == id);
             return View(ans);
-        }
+        } 
         [HttpPost]
         public ActionResult AddToCart(IFormCollection collection)
         {
